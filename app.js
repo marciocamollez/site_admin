@@ -18,6 +18,9 @@ app.use(bodyParser.json())
 app.engine('handlebars', handlebars({ defaultLayout: "main" }));
 app.set('view engine', 'handlebars')
 
+//Carregar arquivos estáticos. Informa que o css, js, images está na pasta public do projeto
+app.use(express.static(path.join(__dirname, "public")))
+
 //Rotas
 
 //Define que a URL /home será a página inicial. Dentro do diretório routes está o arquivo
