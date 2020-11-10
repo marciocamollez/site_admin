@@ -7,6 +7,7 @@ const home = require("./routes/home")
 const sobre = require("./routes/sobre")
 const contato = require("./routes/contato")
 const usuario = require("./routes/usuario")
+const mongoose = require('mongoose')
 const path = require('path')
 
 //Configuração
@@ -20,6 +21,16 @@ app.set('view engine', 'handlebars')
 
 //Carregar arquivos estáticos. Informa que o css, js, images está na pasta public do projeto
 app.use(express.static(path.join(__dirname, "public")))
+
+//Conexão com o Banco de Dados
+mongoose.connect('mongodb://localhost/db_marcio', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+}).then(() => {
+    console.log("Conexão realizada com sucesso!");
+}).catch((erro) => {
+    console.log("Conexão falhou: " + erro);
+})
 
 //Rotas
 
