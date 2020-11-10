@@ -23,7 +23,7 @@ nav ul li.menu a:hover {
 }
 
 .descr-top {
-    background-image: url("../imagens/home-top.jpg");
+    background-image: url("/images/topo_home/home-top.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

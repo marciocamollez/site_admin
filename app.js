@@ -7,6 +7,7 @@ const home = require("./routes/home")
 const sobre = require("./routes/sobre")
 const contato = require("./routes/contato")
 const usuario = require("./routes/usuario")
+const add_bd = require("./routes/add_bd")
 const mongoose = require('mongoose')
 const path = require('path')
 
@@ -39,6 +40,7 @@ app.use('/home', home)
 app.use('/sobre', sobre)
 app.use('/contato', contato)
 app.use('/usuario', usuario)
+app.use('/add_bd', add_bd)
 
 //Iniciar Servidor
 const PORT = 8080
