@@ -12,6 +12,9 @@ const Servico = mongoose.model('servicos')
 require("../models/Video")
 const Video = mongoose.model('video')
 
+require("../models/Experiencia")
+const Experiencia = mongoose.model('experiencia')
+
 router.get('/', (req,res) => {
     /*new HomeTopo({
         titulo: "Temos a solução que sua empresa precisa!",
@@ -19,9 +22,9 @@ router.get('/', (req,res) => {
         titulobtn: "ENTRE EM CONTATO",
         urlbtn: "http://localhost:8080/contato"
     }).save().then(() => {
-        console.log("Topo Cadastrado com Sucesso")
+        res.send("Topo Cadastrado com Sucesso")
     }).catch((erro) => {
-        console.log("Erro ao cadastrar o Topo")
+        res.send("Erro ao cadastrar o Topo")
     })*/
 
     /*new Servico({
@@ -42,7 +45,7 @@ router.get('/', (req,res) => {
         res.send('Erro ao cadastrar serviço')
     })*/
 
-    new Video({
+    /*new Video({
         titulo: "Vídeo",
         subtitulo: "This is a wider card with supporting text below as a natural lead-in to additional content.",
         urlvideo: "<iframe class='embed-responsive-item' src='https://www.youtube.com/embed/ddnWxl2yXeM?rel=0' allowfullscreen></iframe>"
@@ -50,6 +53,26 @@ router.get('/', (req,res) => {
         res.send('Vídeo cadastrado com sucesso')
     }).catch((erro) => {
         res.send('Erro ao cadastrar vídeo')
+    })*/
+
+    new Experiencia({
+        titulo: "Somos uma empresa...",
+        subtitulo: "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
+        iconeexpum: "fas fa-route",
+        tituloexpum: "EXPERIÊNCIA",
+        descexpum: "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+        iconeexpdois: "fas fa-satellite",
+        tituloexpdois: "TECNOLOGIA",
+        descexpdois: "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+        iconeexptres: "far fa-handshake",
+        tituloexptres: "PROXIMIDADE",
+        descexptres: "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+        titulobtn: "ENTRE EM CONTATO",
+        urlbtn: "http://localhost:8080/contato"
+    }).save().then(() => {
+        res.send('Experiencia cadastrada com sucesso')
+    }).catch((erro) => {
+        res.send('Erro ao cadastrar experiência')
     })
 
 })
