@@ -43,7 +43,7 @@ nav ul li.menu a:hover {
 }
 
 .video {
-    background-image: url("../imagens/fundo-video.jpg");
+    background-image: url("/images/video_home/fundo-video.jpg");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;

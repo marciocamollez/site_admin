@@ -9,11 +9,19 @@ const HomeTopo = mongoose.model('hometopos')
 require("../models/Servico")
 const Servico = mongoose.model('servicos')
 
+require("../models/Video")
+const Video = mongoose.model('video')
+
 
 router.get('/', (req, res) => {
     HomeTopo.findOne({}).then((hometopo) => {
         Servico.findOne({}).then((servico) => {
-            res.render("home/home", { hometopo: hometopo, servico: servico })
+            Video.findOne({}).then((video) => {
+                res.render("home/home", { hometopo: hometopo, servico: servico, video: video })
+            }).catch((erro) =>{
+                res.send("Nenhum vídeo encontrado entre em contato com o administrador!")
+            })
+            
         }).catch((erro) => {
             res.send("Nenhum serviço encontrado entre em contato com o administrador!")
         })

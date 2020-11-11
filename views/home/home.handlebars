@@ -7,40 +7,56 @@
 </div>
 
 
-    <div class="jumbotron servicos">
-        <div class="container">
-            <h2 class="display-4 text-center" style="margin-bottom: 40px;">{{servico.titulo}}</h2>
+<div class="jumbotron servicos">
+    <div class="container">
+        <h2 class="display-4 text-center" style="margin-bottom: 40px;">{{servico.titulo}}</h2>
 
-            <div class="card-deck">
-                <div class="card text-center card-um">
-                    <span style="font-size: 58px; color: #313451;">
-                        <i class="{{servico.iconeservum}}"></i>
-                    </span>
-                    <div class="card-body">
-                        <h5 class="card-title">{{servico.tituloservum}}</h5>
-                        <p class="card-text lead">{{servico.descservum}}</p>
-                    </div>
+        <div class="card-deck">
+            <div class="card text-center card-um">
+                <span style="font-size: 58px; color: #313451;">
+                    <i class="{{servico.iconeservum}}"></i>
+                </span>
+                <div class="card-body">
+                    <h5 class="card-title">{{servico.tituloservum}}</h5>
+                    <p class="card-text lead">{{servico.descservum}}</p>
                 </div>
-                <div class="card text-center card-dois">
-                    <span style="font-size: 58px; color: #313451;">
-                        <i class="{{servico.iconeservdois}}"></i>
-                    </span>
-                    <div class="card-body">
-                        <h5 class="card-title">{{servico.tituloservdois}}</h5>
-                        <p class="card-text lead">{{servico.descservdois}}</p>
-                    </div>
+            </div>
+            <div class="card text-center card-dois">
+                <span style="font-size: 58px; color: #313451;">
+                    <i class="{{servico.iconeservdois}}"></i>
+                </span>
+                <div class="card-body">
+                    <h5 class="card-title">{{servico.tituloservdois}}</h5>
+                    <p class="card-text lead">{{servico.descservdois}}</p>
                 </div>
-                <div class="card text-center card-tres">
-                    <div class="icon-row tamanh-icone ">
-                        <span style="font-size: 58px; color: #313451;">
-                            <i class="{{servico.iconeservtres}}"></i>
-                        </span>
-                    </div>
-                    <div class="card-body">
-                        <h5 class="card-title">{{servico.tituloservtres}}</h5>
-                        <p class="card-text lead">{{servico.descservtres}}</p>
-                    </div>
+            </div>
+            <div class="card text-center card-tres">
+                <div class="icon-row tamanh-icone ">
+                    <span style="font-size: 58px; color: #313451;">
+                        <i class="{{servico.iconeservtres}}"></i>
+                    </span>
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">{{servico.tituloservtres}}</h5>
+                    <p class="card-text lead">{{servico.descservtres}}</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+
+<div class="jumbotron video">
+    <div class="container">
+        <h2 class="display-4 text-center video-titulo" style="margin-bottom: 40px;">{{video.titulo}}</h2>
+        <p class="lead text-center video-parag">{{video.subtitulo}}</p>
+        <div class="row justify-content-md-center video-cont">
+
+            <div class="col-12 col-md-8">
+                <div class="embed-responsive embed-responsive-16by9">
+                    {{{video.urlvideo}}}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
