@@ -15,31 +15,40 @@ const Video = mongoose.model('video')
 require("../models/Experiencia")
 const Experiencia = mongoose.model('experiencia')
 
+require("../models/Rodape")
+const Rodape = mongoose.model('rodape')
+
 
 router.get('/', (req, res) => {
     HomeTopo.findOne({}).then((hometopo) => {
         Servico.findOne({}).then((servico) => {
             Video.findOne({}).then((video) => {
                 Experiencia.findOne({}).then((experiencia) => {
-                    res.render("home/home", { hometopo: hometopo, servico: servico, video: video, experiencia: experiencia })
+                    Rodape.findOne({}).then((rodape) => {
+                        res.render("home/home", { hometopo: hometopo, servico: servico, video: video, experiencia: experiencia, rodape: rodape })
+                    }).catch((erro) => {
+                        res.send("Nenhuma informação encontrada entre em contato com o administrador!")
+                    })
+
                 }).catch((erro) => {
                     res.send("Nenhuma experiência encontrada entre em contato com o administrador!")
                 })
-                
-            }).catch((erro) =>{
+            }).catch((erro) => {
                 res.send("Nenhum vídeo encontrado entre em contato com o administrador!")
             })
-            
         }).catch((erro) => {
             res.send("Nenhum serviço encontrado entre em contato com o administrador!")
         })
     }).catch((erro) => {
         res.send("Nenhum topo encontrado entre em contato com o administrador!")
     })
+
+})
+
+
         //pasta home, arquivo home.handlebars
         // primeiro parametro é o nome que vai ficar dentro da chave no html e o segundo
         // é o nome do modelo. Exemplo { nome_do_html: nome_do_modelo }
-})
 
 
 module.exports = router

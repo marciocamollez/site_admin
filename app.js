@@ -36,7 +36,7 @@ mongoose.connect('mongodb://localhost/db_marcio', {
 //Rotas
 
 //Define que a URL /home será a página inicial. Dentro do diretório routes está o arquivo
-app.use('/home', home)
+app.use('/', home)
 app.use('/sobre', sobre)
 app.use('/contato', contato)
 app.use('/usuario', usuario)

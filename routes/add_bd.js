@@ -15,6 +15,9 @@ const Video = mongoose.model('video')
 require("../models/Experiencia")
 const Experiencia = mongoose.model('experiencia')
 
+require("../models/Rodape")
+const Rodape = mongoose.model('rodape')
+
 router.get('/', (req,res) => {
     /*new HomeTopo({
         titulo: "Temos a solução que sua empresa precisa!",
@@ -55,7 +58,7 @@ router.get('/', (req,res) => {
         res.send('Erro ao cadastrar vídeo')
     })*/
 
-    new Experiencia({
+    /*new Experiencia({
         titulo: "Somos uma empresa...",
         subtitulo: "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
         iconeexpum: "fas fa-route",
@@ -73,6 +76,34 @@ router.get('/', (req,res) => {
         res.send('Experiencia cadastrada com sucesso')
     }).catch((erro) => {
         res.send('Erro ao cadastrar experiência')
+    })*/
+
+
+    new Rodape({
+        titulopg: "Celke",
+        titulopgum: "Home",
+        urlpgum: "/",
+        titulopgdois: "Sobre",
+        urlpgdois: "/sobre",
+        titulopgtres: "Contato",
+        urlpgtres: "/contato",
+        tituloend: "Contato",
+        telefone: "(XX) XXXX-XXXX",
+        endereco: "Avenida Winston Churchill",
+        cnpj: "CNPJ: XX.XXX.XXX/XXXX-XX",
+        tituloredsoc: "Redes Sociais",
+        titulorsum: "Instagram",
+        urlrdum: "https://www.instagram.com/celkecursos",
+        titulorsdois: "Facebook",
+        urlrddois: "https://www.facebook.com/celkecursos/",
+        titulorstres: "YouTube",
+        urlrdtres: "https://www.youtube.com/channel/UC5ClMRHFl8o_MAaO4w7ZYug",
+        titulorsquatro: "Twiter",
+        urlrdquatro: "https://twitter.com/celkecursos",
+    }).save().then(() => {
+        res.send('Rodapé cadastrado com sucesso')
+    }).catch((erro) => {
+        res.send('Erro ao cadastrar rodapé')
     })
 
 })
