@@ -18,6 +18,9 @@ const Experiencia = mongoose.model('experiencia')
 require("../models/Rodape")
 const Rodape = mongoose.model('rodape')
 
+require("../models/Sobre")
+const Sobre = mongoose.model('sobre')
+
 router.get('/', (req,res) => {
     /*new HomeTopo({
         titulo: "Temos a solução que sua empresa precisa!",
@@ -79,7 +82,7 @@ router.get('/', (req,res) => {
     })*/
 
 
-    new Rodape({
+    /*new Rodape({
         titulopg: "Celke",
         titulopgum: "Home",
         urlpgum: "/",
@@ -104,6 +107,28 @@ router.get('/', (req,res) => {
         res.send('Rodapé cadastrado com sucesso')
     }).catch((erro) => {
         res.send('Erro ao cadastrar rodapé')
+    })*/
+
+    new Sobre({
+        titulotop: "Blá blá é uma empresa de trasporte!",
+        subtitulotop: "Uma das maiores transportadora do Brasil",
+        titulo: "Somos uma empresa...",
+        subtitulo: "Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.",
+        iconesbum: "fas fa-route",
+        titulosbum: "EXPERIÊNCIA",
+        descsbum: "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+        iconesbdois: "fas fa-satellite",
+        titulosbdois: "TECNOLOGIA",
+        descsbdois: "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+        iconesbtres: "far fa-handshake",
+        titulosbtres: "PROXIMIDADE",
+        descsbtres: "Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.",
+        titulobtn: "ENTRE EM CONTATO",
+        urlbtn: "http://localhost:8080/contato"
+    }).save().then(() => {
+        res.send('Sobre cadastrado com sucesso')
+    }).catch((erro) => {
+        res.send('Erro ao cadastrar sobre')
     })
 
 })
