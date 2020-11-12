@@ -21,6 +21,9 @@ const Rodape = mongoose.model('rodape')
 require("../models/Sobre")
 const Sobre = mongoose.model('sobre')
 
+require("../models/ContatoInfo")
+const ContatoInfo = mongoose.model('contatoinfo')
+
 router.get('/', (req,res) => {
     /*new HomeTopo({
         titulo: "Temos a solução que sua empresa precisa!",
@@ -109,7 +112,7 @@ router.get('/', (req,res) => {
         res.send('Erro ao cadastrar rodapé')
     })*/
 
-    new Sobre({
+    /*new Sobre({
         titulotop: "Blá blá é uma empresa de trasporte!",
         subtitulotop: "Uma das maiores transportadora do Brasil",
         titulo: "Somos uma empresa...",
@@ -129,6 +132,23 @@ router.get('/', (req,res) => {
         res.send('Sobre cadastrado com sucesso')
     }).catch((erro) => {
         res.send('Erro ao cadastrar sobre')
+    })*/
+
+    new ContatoInfo({
+        titulo: "Entre em Contato – Transportadora!",
+        subtitulo: "Escolha o canal de atendimento de sua preferência para orçamento ou dúvidas",
+        tituloform: "Solicite mais informações ou orçamento",
+        titulohratend: "Fale Conosco",
+        hratend: "Segunda a Sexta: 08:30 às 12:00 e 13:30 às 18:00",
+        tituloend: "Endereço",
+        logradouro: "Avenida Winston Churchill, 936",
+        bairro: "Capão Raso - Curitiba",
+        complemento: "Sala",
+        telefone: "(xx) xxxx-xxxx"
+    }).save().then(() => {
+        res.send('Contato cadastrado com sucesso')
+    }).catch((erro) => {
+        res.send('Erro ao cadastrar contato')
     })
 
 })
