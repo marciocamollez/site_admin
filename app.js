@@ -9,15 +9,42 @@ const contato = require("./routes/contato")
 const usuario = require("./routes/usuario")
 const add_bd = require("./routes/add_bd")
 const mongoose = require('mongoose')
+const session = require('express-session')
+const flash = require('connect-flash')
 const path = require('path')
 
 //Configuração
+
+//Sessão
+app.use(session({
+    secret: 'celketwosession',
+    resave: true,
+    saveUninitialized: true
+}))
+
+//Flash
+app.use(flash())
+
+//Middleware
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg")
+    res.locals.error_msg = req.flash("error_msg")
+    next()
+})
+
+
 //Body Parser
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
 
 //Handlebars - Define qual o arquivo principal pra carregar o esqueleto do html
-app.engine('handlebars', handlebars({ defaultLayout: "main" }));
+app.engine('handlebars', handlebars({ 
+    defaultLayout: "main",
+    runtimeOptions: {
+        allowProtoPropertiesByDefault: true, //Erro Handlebars de access-denied
+        allowProtoMethodsByDefault: true,
+    }, 
+}));
 app.set('view engine', 'handlebars')
 
 //Carregar arquivos estáticos. Informa que o css, js, images está na pasta public do projeto

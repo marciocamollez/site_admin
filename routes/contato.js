@@ -61,11 +61,19 @@ router.post('/add-contato', (req, res) => {
             mensagem: req.body.mensagem
         }
         new Contato(addContato).save().then(() => {
-            console.log("Contato cadastrado com sucesso")
+            req.flash("success_msg", "Mensagem enviada com sucesso")
             res.redirect('/contato')
         }).catch((erro) => {
-            console.log("Erro: Contato não foi cadastrado com sucesso")
-            res.redirect('/contato')
+            ContatoInfo.findOne({}).then((contatoinfo) => {
+                Rodape.findOne({}).then((rodape) => {
+                    errors.push({ error: "Falha ao enviar" })
+                    res.render("contato/contato", { errors: errors, contato: dados_contato, contatoinfo: contatoinfo, rodape: rodape })
+                }).catch((erro) => {
+                    res.send("Nenhuma informação encontrada entre em contato com o administrador!")
+                })
+            }).catch((erro) => {
+                res.send("Nenhuma informação encontrada entre em contato com o administrador!")
+            })
         })
     }
 })
