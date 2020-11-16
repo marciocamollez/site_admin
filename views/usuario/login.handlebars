@@ -1,7 +1,7 @@
-    <form class="form-signin text-center">
+    <form class="form-signin text-center" method="POST" action="/usuario/login">
         <img class="mb-4" src="/images/logo_celke.png" alt="Celke" width="72" height="72">
         <h1 class="h3 mb-3 font-weight-normal">Área Restrita</h1>
-
+        {{>_msg}}
         <div class="form-group">
             <label>Usuário</label>
             <input name="email" type="text" class="form-control" placeholder="Digite o usuário">

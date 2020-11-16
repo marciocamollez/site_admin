@@ -24,6 +24,12 @@ const Sobre = mongoose.model('sobre')
 require("../models/ContatoInfo")
 const ContatoInfo = mongoose.model('contatoinfo')
 
+require("../models/Usuario")
+const Usuario = mongoose.model('usuario')
+
+const bcryptjs = require('bcryptjs')
+
+
 router.get('/', (req,res) => {
     /*new HomeTopo({
         titulo: "Temos a solução que sua empresa precisa!",
@@ -134,7 +140,7 @@ router.get('/', (req,res) => {
         res.send('Erro ao cadastrar sobre')
     })*/
 
-    new ContatoInfo({
+    /*new ContatoInfo({
         titulo: "Entre em Contato – Transportadora!",
         subtitulo: "Escolha o canal de atendimento de sua preferência para orçamento ou dúvidas",
         tituloform: "Solicite mais informações ou orçamento",
@@ -149,7 +155,29 @@ router.get('/', (req,res) => {
         res.send('Contato cadastrado com sucesso')
     }).catch((erro) => {
         res.send('Erro ao cadastrar contato')
+    })*/
+
+    var senha = "123456"
+    bcryptjs.genSalt(10, (erro, salt) => {
+        bcryptjs.hash(senha, salt, (erro, hash) => {
+            if(erro){
+                res.send('Erro ao criptografar a senha')
+            }
+            else{
+                var senha_cript = hash
+                new Usuario({
+                    nome: "Marcio",
+                    email: "marciocamollez@hotmail.com",
+                    senha: senha_cript
+                }).save().then(() => {
+                    res.send('Usuario cadastrado com sucesso')
+                }).catch((erro) => {
+                    res.send('Erro ao cadastrar usuario')
+                })
+            }
+        })
     })
+    
 
 })
 
