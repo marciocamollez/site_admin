@@ -28,4 +28,14 @@ router.get('/edit-sobre', eAdmin, (req,res) => {
     res.render("sobre/edit-sobre", { layout: 'adm.handlebars' }) //pasta sobre, arquivo edit-sobre. handlebars. O layout padrão muda para a página adm, pois é home do administrativo
 })
 
+router.get('/vis-sobre', eAdmin, (req,res) => {
+    Sobre.findOne({}).then((sobre) => {
+        res.render("sobre/vis-sobre", { layout: 'adm.handlebars', sobre: sobre }) 
+    }).catch((erro) => {
+        req.flash("error_msg", "Erro: Nenhum registro encontrado")
+        res.redirect("/dashboard/")
+    })
+    
+})
+
 module.exports = router
