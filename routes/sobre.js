@@ -9,6 +9,8 @@ const Sobre = mongoose.model('sobre')
 require("../models/Rodape")
 const Rodape = mongoose.model('rodape')
 
+const { eAdmin } = require("../helpers/eAdmin") 
+
 router.get('/', (req,res) => {
     Sobre.findOne({}).then((sobre) => {
         Rodape.findOne({}).then((rodape) => {
@@ -22,7 +24,7 @@ router.get('/', (req,res) => {
     
 })
 
-router.get('/edit-sobre', (req,res) => {
+router.get('/edit-sobre', eAdmin, (req,res) => {
     res.render("sobre/edit-sobre", { layout: 'adm.handlebars' }) //pasta sobre, arquivo edit-sobre. handlebars. O layout padrão muda para a página adm, pois é home do administrativo
 })
 
