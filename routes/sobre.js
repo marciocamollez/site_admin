@@ -25,7 +25,17 @@ router.get('/', (req,res) => {
 })
 
 router.get('/edit-sobre', eAdmin, (req,res) => {
-    res.render("sobre/edit-sobre", { layout: 'adm.handlebars' }) //pasta sobre, arquivo edit-sobre. handlebars. O layout padrão muda para a página adm, pois é home do administrativo
+    Sobre.findOne({}).then((sobre) => {
+        res.render("sobre/edit-sobre", { layout: 'adm.handlebars', sobre: sobre }) 
+    }).catch((erro) => {
+        req.flash("error_msg", "Erro: Nenhum registro Sobre a Empresa encontrado")
+        res.redirect("/sobre")
+    })
+    
+})
+
+router.post('/update-sobre', eAdmin, (req,res) => {
+    res.send("Salvar")
 })
 
 router.get('/vis-sobre', eAdmin, (req,res) => {
