@@ -35,7 +35,34 @@ router.get('/edit-sobre', eAdmin, (req,res) => {
 })
 
 router.post('/update-sobre', eAdmin, (req,res) => {
-    res.send("Salvar")
+    Sobre.findOne({ _id: req.body._id }).then((sobre) => {
+        sobre.titulotop = req.body.titulotop,
+        sobre.subtitulotop = req.body.subtitulotop,
+        sobre.titulo = req.body.titulo,
+        sobre.subtitulo = req.body.subtitulo,
+        sobre.titulosbum = req.body.titulosbum,
+        sobre.iconesbum = req.body.iconesbum,
+        sobre.descsbum = req.body.descsbum,
+        sobre.titulosbdois = req.body.titulosbdois,
+        sobre.iconesbdois = req.body.iconesbdois,
+        sobre.descsbdois = req.body.descsbdois,
+        sobre.titulosbtres = req.body.titulosbtres,
+        sobre.iconesbtres = req.body.iconesbtres,
+        sobre.descsbtres = req.body.descsbtres,
+        sobre.titulobtn = req.body.titulobtn,
+        sobre.urlbtn = req.body.urlbtn
+
+        sobre.save().then(() => {
+            req.flash("success_msg", "Editado com sucesso!")
+            res.redirect("/sobre/vis-sobre")
+        }).catch((erro) => {
+            req.flash("error_msg", "Erro: Não foi possível alterar")
+            res.redirect("/dashboard/")
+        })
+    }).catch((erro) => {
+        req.flash("error_msg", "Erro: Nenhum registro encontrado")
+        res.redirect("/dashboard/")
+    })
 })
 
 router.get('/vis-sobre', eAdmin, (req,res) => {

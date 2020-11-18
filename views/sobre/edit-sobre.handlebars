@@ -21,6 +21,8 @@
         </div>
         <hr>
         <form method="POST" action="/sobre/update-sobre">
+            <input name="_id" type="hidden" value="{{sobre._id}}">
+
             <div class="form-group">
                 <label>Título do Topo</label>
                 <input name="titulotop" type="text" class="form-control" id="titulotop" placeholder="Título do Topo" required value="{{sobre.titulotop}}">
