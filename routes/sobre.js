@@ -2,6 +2,9 @@
 const express = require('express')
 const router = express.Router()
 const mongoose = require('mongoose')
+const multer = require('multer')
+const path = require('path')
+const fs = require('fs') //file streams. Consumo de memoria baixo
 
 require("../models/Sobre")
 const Sobre = mongoose.model('sobre')
@@ -128,6 +131,42 @@ router.post('/update-sobre', eAdmin, (req,res) => {
     }
 
     
+})
+
+router.get('/edit-sobre-img', (req, res) => {
+    res.render("sobre/edit-sobre-img", { layout: 'adm.handlebars' })
+})
+
+//const upload = multer({dest: "uploads"})
+
+const storage = multer.diskStorage({
+    destination: function(req, res, cb){
+        cb(null, "public/images/topo_sobre")
+    },
+    filename: function(req, res, cb){
+        cb (null, "descr-top-sobre.jpg")
+    }
+})
+const upload = multer({ 
+    storage,
+    fileFilter: (req, file, cb) => {
+        if(file.mimetype == "image/jpg" || file.mimetype == "image/jpeg"){
+            cb(null, true)
+        }else{
+            cb(null, false)
+        }
+    }
+})
+
+router.post('/update-sobre-img', upload.single('file'), (req, res, next) => {
+    const file = req.file
+    if(!file){
+        req.flash("error_msg", "Erro: Selecione extensão JPG")
+        res.redirect("/sobre/edit-sobre-img/")
+    }else{
+        req.flash("success_msg", "Upload de imagem realizada com sucesso!")
+        res.redirect("/sobre/vis-sobre/")
+    }
 })
 
 router.get('/vis-sobre', eAdmin, (req,res) => {
