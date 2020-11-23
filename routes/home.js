@@ -56,6 +56,7 @@ router.get('/', (req, res) => {
 
 
 
+/* Seção Topo */
 router.get('/vis-home-top', eAdmin, (req, res) => {
     HomeTopo.findOne({}).then((hometopo) => {
         res.render("home/vis-home-top", {layout: "adm.handlebars", hometopo: hometopo})
@@ -162,6 +163,8 @@ router.post('/update-home-top-img', upload.single('file'), (req, res, next) => {
     }
 })
 
+/* Seção Serviços */
+
 router.get('/vis-home-serv', eAdmin, (req, res) => {
     Servico.findOne({}).then((servico) => {
         res.render("home/vis-home-serv", {layout: "adm.handlebars", servico: servico})
@@ -257,5 +260,112 @@ router.post('/update-home-serv', eAdmin, (req,res) => {
 
     
 })
+
+/* Seção Vídeo */
+
+router.get('/vis-home-video', eAdmin, (req, res) => {
+    Video.findOne({}).then((video) => {
+        res.render("home/vis-home-video", {layout: "adm.handlebars", video: video})
+    }).catch((erro) =>{
+        req.flash("error_msg", "Erro: Não foi possível encontrar o Vídeo")
+        res.redirect("/dashboard/")
+    })
+})
+
+router.get('/edit-home-video', eAdmin, (req,res) => {
+    Video.findOne({}).then((video) => {
+        res.render("home/edit-home-video", { layout: 'adm.handlebars', video: video }) 
+    }).catch((erro) => {
+        req.flash("error_msg", "Erro: Não foi possível encontrar o Vídeo")
+        res.redirect("/dashboard/")
+    })
+})
+
+router.post('/update-home-video', eAdmin, (req,res) => {
+
+    //Primeiro pega todos os campos e verifica se estão vazios, nulos ou indefinidos
+    //Caso esteja, apresenta mensagem de erro em cima do formulário
+    var dados_home_video = req.body
+    var errors = []
+
+    if(!req.body.titulo || typeof req.body.titulo == undefined || req.body.titulo == null){
+        errors.push({error: "Necessário preencher o campo título do Vídeo"})
+    }
+    if(!req.body.subtitulo || typeof req.body.subtitulo == undefined || req.body.subtitulo == null){
+        errors.push({error: "Necessário preencher o campo Subtítulo do Vídeo"})
+    }
+    if(!req.body.urlvideo || typeof req.body.urlvideo == undefined || req.body.urlvideo == null){
+        errors.push({error: "Necessário preencher o campo Link do Vídeo"})
+    }
+    
+
+    //Verifica quantos erros tem acima. Caso tenha algum, monta o layout da página novamente
+    //e apresenta os erros que foram armazenados em um array na variável dados_sobre
+
+    //Para testar todos os ifs, retirar o campo 'required' do html 5 no 'edit-sobre.handlebars'
+    if(errors.length > 0){
+        res.render("home/edit-home-video", { layout: "adm.handlebars", errors: errors, video: dados_home_video} )
+    }
+
+    //Caso não tenha erros, pega todos os dados digitados e altera no Banco
+    else{
+        Video.findOne({ _id: req.body._id }).then((video) => {
+            video.titulo = req.body.titulo,
+            video.subtitulo = req.body.subtitulo,
+            video.urlvideo = req.body.urlvideo
+            
+            video.save().then(() => {
+                req.flash("success_msg", "Editado com sucesso!")
+                res.redirect("/vis-home-video")
+            }).catch((erro) => {
+                req.flash("error_msg", "Erro: Não foi possível alterar")
+                res.redirect("/dashboard/")
+            })
+        }).catch((erro) => {
+            req.flash("error_msg", "Erro: Nenhum registro encontrado")
+            res.redirect("/dashboard/")
+        })
+    }
+
+    
+})
+
+
+/* Seção Upload da imagem do bloco vídeo */
+
+router.get('/edit-home-video-img', (req, res) => {
+    res.render("home/edit-home-video-img", { layout: 'adm.handlebars' })
+})
+
+const storageVideo = multer.diskStorage({
+    destination: function(req, res, cb){
+        cb(null, "public/images/video_home")
+    },
+    filename: function(req, res, cb){
+        cb (null, "fundo-video.jpg")
+    }
+})
+const uploadVideo = multer({ 
+    storage: storageVideo,
+    fileFilter: (req, file, cb) => {
+        if(file.mimetype == "image/jpg" || file.mimetype == "image/jpeg"){
+            cb(null, true)
+        }else{
+            cb(null, false)
+        }
+    }
+})
+
+router.post('/update-home-video-img', uploadVideo.single('file'), (req, res, next) => {
+    const file = req.file
+    if(!file){
+        req.flash("error_msg", "Erro: Selecione extensão JPG")
+        res.redirect("/edit-home-video-img/")
+    }else{
+        req.flash("success_msg", "Upload de imagem realizada com sucesso!")
+        res.redirect("/vis-home-video")
+    }
+})
+
 
 module.exports = router
