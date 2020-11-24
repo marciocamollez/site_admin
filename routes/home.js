@@ -367,5 +367,117 @@ router.post('/update-home-video-img', uploadVideo.single('file'), (req, res, nex
     }
 })
 
+/* Seção Experiência */
+
+router.get('/vis-home-exp', eAdmin, (req, res) => {
+    Experiencia.findOne({}).then((experiencia) => {
+        res.render("home/vis-home-exp", {layout: "adm.handlebars", experiencia: experiencia})
+    }).catch((erro) =>{
+        req.flash("error_msg", "Erro: Não foi possível encontrar a Experiência")
+        res.redirect("/dashboard/")
+    })
+})
+
+router.get('/edit-home-exp', eAdmin, (req, res) => {
+    Experiencia.findOne({}).then((experiencia) => {
+        res.render("home/edit-home-exp", { layout: 'adm.handlebars', experiencia: experiencia })
+    }).catch((erro) => {
+        req.flash("error_msg", "Error: Não foi encontrado nenhum registro para a página inicial no conteúdo da experiencia!")
+        res.redirect("/dashboard/")
+    })
+
+})
+
+
+/* NAO ESTÁ FUNCIONANDO */
+router.post('/update-home-exp', eAdmin, (req,res) => {
+
+    //Primeiro pega todos os campos e verifica se estão vazios, nulos ou indefinidos
+    //Caso esteja, apresenta mensagem de erro em cima do formulário
+    var dados_home_exp = req.body
+    var errors = []
+
+    if(!req.body.titulo || typeof req.body.titulo == undefined || req.body.titulo == null){
+        errors.push({error: "Necessário preencher o campo título da Experiência"})
+    }
+    if(!req.body.subtitulo || typeof req.body.subtitulo == undefined || req.body.subtitulo == null){
+        errors.push({error: "Necessário preencher o campo subtítulo da Experiência"})
+    }
+    if(!req.body.titulobtn || typeof req.body.titulobtn == undefined || req.body.titulobtn == null){
+        errors.push({error: "Necessário preencher o campo título do Botão"})
+    }
+    if(!req.body.urlbtn || typeof req.body.urlbtn == undefined || req.body.urlbtn == null){
+        errors.push({error: "Necessário preencher o campo Link do Botão"})
+    }
+    if(!req.body.iconeexpum || typeof req.body.iconeexpum == undefined || req.body.iconeexpum == null){
+        errors.push({error: "Necessário preencher o campo ícone da Experiência 1"})
+    }
+    if(!req.body.tituloexpum || typeof req.body.tituloexpum == undefined || req.body.tituloexpum == null){
+        errors.push({error: "Necessário preencher o campo título da Experiência 1"})
+    }
+    if(!req.body.descexpum || typeof req.body.descexpum == undefined || req.body.descexpum == null){
+        errors.push({error: "Necessário preencher o campo descrição da Experiência 1"})
+    }
+    if(!req.body.iconeexpdois || typeof req.body.iconeexpdois == undefined || req.body.iconeexpdois == null){
+        errors.push({error: "Necessário preencher o campo ícone da Experiência 2"})
+    }
+    if(!req.body.tituloexpdois || typeof req.body.tituloexpdois == undefined || req.body.tituloexpdois == null){
+        errors.push({error: "Necessário preencher o campo título da Experiência 2"})
+    }
+    if(!req.body.descexpdois || typeof req.body.descexpdois == undefined || req.body.descexpdois == null){
+        errors.push({error: "Necessário preencher o campo descrição da Experiência 2"})
+    }
+    if(!req.body.iconeexptres || typeof req.body.iconeexptres == undefined || req.body.iconeexptres == null){
+        errors.push({error: "Necessário preencher o campo ícone da Experiência 3"})
+    }
+    if(!req.body.tituloexptres || typeof req.body.tituloexptres == undefined || req.body.tituloexptres == null){
+        errors.push({error: "Necessário preencher o campo título da Experiência 3"})
+    }
+    if(!req.body.descexptres || typeof req.body.descexptres == undefined || req.body.descexptres == null){
+        errors.push({error: "Necessário preencher o campo descrição da Experiência 3"})
+    }
+    
+
+    //Verifica quantos erros tem acima. Caso tenha algum, monta o layout da página novamente
+    //e apresenta os erros que foram armazenados em um array na variável dados_sobre
+
+    //Para testar todos os ifs, retirar o campo 'required' do html 5 no 'edit-sobre.handlebars'
+    if(errors.length > 0){
+        res.render("home/edit-home-exp", { layout: "adm.handlebars", errors: errors, experiencia: dados_home_exp })
+    }
+
+    //Caso não tenha erros, pega todos os dados digitados e altera no Banco
+    else{
+        Experiencia.findOne({ _id: req.body._id }).then((experiencia) => {
+            experiencia.titulo = req.body.titulo,
+            experiencia.subtitulo = req.body.subtitulo,
+            experiencia.titulobtn = req.body.titulobtn,
+            experiencia.urlbtn = req.body.urlbtn,
+            experiencia.iconeexpum = req.body.iconeexpum,
+            experiencia.tituloexpum = req.body.tituloexpum,
+            experiencia.descexpum = req.body.descexpum,
+            experiencia.iconeexpdois = req.body.iconeexpdois,
+            experiencia.tituloexpdois = req.body.tituloexpdois,
+            experiencia.descexpdois = req.body.descexpdois,
+            experiencia.iconeexptres = req.body.iconeexptres,
+            experiencia.tituloexptres = req.body.tituloexptres,
+            experiencia.descexptres = req.body.descexptres
+                
+            experiencia.save().then(() => {
+                req.flash("success_msg", "Editado com sucesso!")
+                res.redirect("/vis-home-exp")
+            }).catch((erro) => {
+                req.flash("error_msg", "Erro: Não foi possível alterar")
+                res.redirect("/dashboard/")
+            })
+        }).catch((erro) => {
+            req.flash("error_msg", "Erro: Nenhum registro encontrado")
+            res.redirect("/dashboard/")
+        })
+    }
+
+    
+})
+
 
 module.exports = router
