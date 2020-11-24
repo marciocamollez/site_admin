@@ -1,0 +1,92 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Rodapé</h2>
+            </div>
+            
+            <div class="p-2">
+                <span class="d-none d-md-block">
+                    <a href="/rodape/edit-rodape" class="btn btn-outline-warning btn-sm">Editar</a>
+                </span>
+                <div class="dropdown d-block d-md-none">
+                    <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Ações
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
+                        <a class="dropdown-item" href="/rodape/edit-rodape">Editar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{>_msg}}
+        <hr>
+        <dl class="row">            
+
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">{{rodape._id}}</dd>
+
+            <dt class="col-sm-3">Titulo das Páginas</dt>
+            <dd class="col-sm-9">{{rodape.titulopg}}</dd>
+
+            <dt class="col-sm-3">Titulo da Página 1</dt>
+            <dd class="col-sm-9">{{rodape.titulopgum}}</dd>
+
+            <dt class="col-sm-3">URL da Página 1</dt>
+            <dd class="col-sm-9">{{rodape.urlpgum}}</dd>
+
+            <dt class="col-sm-3">Titulo da Página 2</dt>
+            <dd class="col-sm-9">{{rodape.titulopgdois}}</dd>
+
+            <dt class="col-sm-3">URL da Página 2</dt>
+            <dd class="col-sm-9">{{rodape.urlpgdois}}</dd>
+
+            <dt class="col-sm-3">Titulo da Página 3</dt>
+            <dd class="col-sm-9">{{rodape.titulopgtres}}</dd>
+
+            <dt class="col-sm-3">URL da Página 3</dt>
+            <dd class="col-sm-9">{{rodape.urlpgtres}}</dd>
+
+            <dt class="col-sm-3">Titulo do Endereço</dt>
+            <dd class="col-sm-9">{{rodape.tituloend}}</dd>
+
+            <dt class="col-sm-3">Telefone</dt>
+            <dd class="col-sm-9">{{rodape.telefone}}</dd>
+
+            <dt class="col-sm-3">Endereço</dt>
+            <dd class="col-sm-9">{{rodape.endereco}}</dd>
+
+            <dt class="col-sm-3">CNPJ</dt>
+            <dd class="col-sm-9">{{rodape.cnpj}}</dd>
+
+            <dt class="col-sm-3">Titulo das Rede Sociais</dt>
+            <dd class="col-sm-9">{{rodape.tituloredsoc}}</dd>
+
+            <dt class="col-sm-3">Titulo Rede Social 1</dt>
+            <dd class="col-sm-9">{{rodape.titulorsum}}</dd>
+
+            <dt class="col-sm-3">URL Rede Social 1</dt>
+            <dd class="col-sm-9">{{rodape.urlrdum}}</dd>
+
+            <dt class="col-sm-3">Titulo Rede Social 2</dt>
+            <dd class="col-sm-9">{{rodape.titulorsdois}}</dd>
+
+            <dt class="col-sm-3">URL Rede Social 2</dt>
+            <dd class="col-sm-9">{{rodape.urlrddois}}</dd>
+
+            <dt class="col-sm-3">Titulo Rede Social 3</dt>
+            <dd class="col-sm-9">{{rodape.titulorstres}}</dd>
+
+            <dt class="col-sm-3">URL Rede Social 3</dt>
+            <dd class="col-sm-9">{{rodape.urlrdtres}}</dd>
+
+            <dt class="col-sm-3">Titulo Rede Social 4</dt>
+            <dd class="col-sm-9">{{rodape.titulorsquatro}}</dd>
+
+            <dt class="col-sm-3">URL Rede Social 4</dt>
+            <dd class="col-sm-9">{{rodape.urlrdquatro}}</dd>
+
+        </dl>
+    </div>
+</div>

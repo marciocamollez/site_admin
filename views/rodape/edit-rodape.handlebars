@@ -1,0 +1,143 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Editar Rodapé</h2>
+            </div>
+            <div class="p-2">
+                <span class="d-none d-md-block">
+                    <a href="/rodape/vis-rodape" class="btn btn-outline-primary btn-sm">Visualizar</a>
+                </span>
+                <div class="dropdown d-block d-md-none">
+                    <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Ações
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
+                        <a class="dropdown-item" href="/rodape/vis-rodape">Visualizar</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{>_msg}}
+        <hr>
+        
+        <form method="POST" action="/rodape/update-rodape">
+            <input name="_id" type="hidden" value="{{rodape._id}}">
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Titulo das Páginas</label>
+                <input name="titulopg" type="text" class="form-control" id="titulopg"
+                    placeholder="Titulo das Páginas" value="{{rodape.titulopg}}" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> Titulo da Página 1</label>
+                    <input name="titulopgum" type="text" class="form-control" id="titulopgum" placeholder="Titulo da página um" value="{{rodape.titulopgum}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> URL da Página 1</label>
+                    <input name="urlpgum" type="text" class="form-control" id="urlpgum" placeholder="URL da página um" value="{{rodape.urlpgum}}" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> Titulo da Página 2</label>
+                    <input name="titulopgdois" type="text" class="form-control" id="titulopgdois" placeholder="Titulo da página dois" value="{{rodape.titulopgdois}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> URL da Página 2</label>
+                    <input name="urlpgdois" type="text" class="form-control" id="urlpgdois" placeholder="URL da página dois" value="{{rodape.urlpgdois}}" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> Titulo da Página 3</label>
+                    <input name="titulopgtres" type="text" class="form-control" id="titulopgtres" placeholder="Titulo da página tres" value="{{rodape.titulopgtres}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> URL da Página 3</label>
+                    <input name="urlpgtres" type="text" class="form-control" id="urlpgtres" placeholder="URL da página tres" value="{{rodape.urlpgtres}}" required>
+                </div>
+            </div>
+            <hr>
+
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Titulo do Endereço</label>
+                <input name="tituloend" type="text" class="form-control" id="tituloend" placeholder="Titulo do Endereço" value="{{rodape.tituloend}}" required>
+            </div>
+
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Telefone</label>
+                <input name="telefone" type="text" class="form-control" id="telefone" placeholder="Telefone" value="{{rodape.telefone}}" required>
+            </div>
+
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Endereço</label>
+                <input name="endereco" type="text" class="form-control" id="endereco" placeholder="Endereço" value="{{rodape.endereco}}" required>
+            </div>
+
+            <div class="form-group">
+                <label><span class="text-danger">*</span>CNPJ</label>
+                <input name="cnpj" type="text" class="form-control" id="cnpj" placeholder="CNPJ" value="{{rodape.cnpj}}" required>
+            </div>
+            <hr>
+
+            <div class="form-group">
+                <label><span class="text-danger">*</span>Titulo das Rede Sociais</label>
+                <input name="tituloredsoc" type="text" class="form-control" id="tituloredsoc" placeholder="Titulo das rede sociais" value="{{rodape.tituloredsoc}}" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> Titulo da Rede Social 1</label>
+                    <input name="titulorsum" type="text" class="form-control" id="titulorsum" placeholder="Titulo da rede social um" value="{{rodape.titulorsum}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> URL Rede Social 1</label>
+                    <input name="urlrdum" type="text" class="form-control" id="urlrdum" placeholder="URL da rede social um" value="{{rodape.urlrdum}}" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> Titulo da Rede Social 2</label>
+                    <input name="titulorsdois" type="text" class="form-control" id="titulorsdois" placeholder="Titulo da rede social dois" value="{{rodape.titulorsdois}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> URL Rede Social 2</label>
+                    <input name="urlrddois" type="text" class="form-control" id="urlrddois" placeholder="URL da rede social dois" value="{{rodape.urlrddois}}" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> Titulo da Rede Social 3</label>
+                    <input name="titulorstres" type="text" class="form-control" id="titulorstres" placeholder="Titulo da rede social tres" value="{{rodape.titulorstres}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> URL Rede Social 3</label>
+                    <input name="urlrdtres" type="text" class="form-control" id="urlrdtres" placeholder="URL da rede social tres" value="{{rodape.urlrdtres}}" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> Titulo da Rede Social 4</label>
+                    <input name="titulorsquatro" type="text" class="form-control" id="titulorsquatro" placeholder="Titulo da rede social quatro" value="{{rodape.titulorsquatro}}" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label><span class="text-danger">*</span> URL Rede Social 4</label>
+                    <input name="urlrdquatro" type="text" class="form-control" id="urlrdquatro" placeholder="URL da rede social quatro" value="{{rodape.urlrdquatro}}" required>
+                </div>
+            </div>
+
+            <p>
+                <span class="text-danger">* </span>Campo obrigatório
+            </p>
+            <button type="submit" class="btn btn-warning">Salvar</button>
+        </form>
+    </div>
+</div>

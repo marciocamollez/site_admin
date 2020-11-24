@@ -9,6 +9,7 @@ const contato = require("./routes/contato")
 const usuario = require("./routes/usuario")
 const add_bd = require("./routes/add_bd")
 const dashboard = require("./routes/dashboard")
+const rodape = require("./routes/rodape")
 const mongoose = require('mongoose')
 const session = require('express-session')
 const flash = require('connect-flash')
@@ -77,6 +78,7 @@ app.use('/contato', contato)
 app.use('/usuario', usuario)
 app.use('/add_bd', add_bd)
 app.use('/dashboard', dashboard)
+app.use('/rodape', rodape)
 
 //Iniciar Servidor
 const PORT = 8080
