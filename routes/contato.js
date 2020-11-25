@@ -81,8 +81,9 @@ router.post('/add-contato', (req, res) => {
 })
 
 router.get("/list-contato", eAdmin, (req, res) => {
-    Contato.find({}).then((contato) => {
-        res.render("contato/list-contato", { layout: 'adm.handlebars', contato: contato })
+    const { page = 1 } = req.query
+    Contato.paginate({}, { page, limit: 2 }).then((contato) => {
+        res.render("contato/list-contato", { layout: 'adm.handlebars', contatos: contato })
     }).catch((erro) => {
         req.flash("error_msg", "Error: Nenhuma mensagem de contato encontrada!")
         res.redirect("/dashboard/")

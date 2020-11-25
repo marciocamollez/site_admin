@@ -1,4 +1,5 @@
 const mongoose = require('mongoose')
+const mongoosePaginate = require('mongoose-paginate-v2')
 const Schema = mongoose.Schema
 
 const Contato = new mongoose.Schema({
@@ -27,6 +28,9 @@ const Contato = new mongoose.Schema({
         required: false
     },
 })
+
+
+Contato.plugin(mongoosePaginate)
 
 mongoose.model("contato", Contato)
 //valor entre aspas é como vai ficar a tabela do Banco de Dados
