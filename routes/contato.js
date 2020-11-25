@@ -12,6 +12,8 @@ const Contato = mongoose.model('contato')
 require("../models/Rodape")
 const Rodape = mongoose.model('rodape')
 
+const { eAdmin } = require("../helpers/eAdmin")
+
 router.get('/', (req,res) => {
     ContatoInfo.findOne({}).then((contatoinfo) => {
         Rodape.findOne({}).then((rodape) => {
@@ -76,6 +78,15 @@ router.post('/add-contato', (req, res) => {
             })
         })
     }
+})
+
+router.get("/list-contato", eAdmin, (req, res) => {
+    Contato.find({}).then((contato) => {
+        res.render("contato/list-contato", { layout: 'adm.handlebars', contato: contato })
+    }).catch((erro) => {
+        req.flash("error_msg", "Error: Nenhuma mensagem de contato encontrada!")
+        res.redirect("/dashboard/")
+    })
 })
 
 
