@@ -1,0 +1,67 @@
+<div class="content p-1">
+    <div class="list-group-item">
+        <div class="d-flex">
+            <div class="mr-auto p-2">
+                <h2 class="display-4 titulo">Informações de Contato</h2>
+            </div>
+            
+            <div class="p-2">
+                <span class="d-none d-md-block">
+                    <a href="/contato-info/edit-contato-info" class="btn btn-outline-warning btn-sm">Editar</a>
+                    <a href="/contato-info/edit-contato-info-img" class="btn btn-outline-warning btn-sm">Editar Imagem</a>
+                </span>
+                <div class="dropdown d-block d-md-none">
+                    <button class="btn btn-primary dropdown-toggle btn-sm" type="button" id="acoesListar"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Ações
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="acoesListar">
+                        <a class="dropdown-item" href="/contato-info/edit-contato-info">Editar</a>
+                        <a class="dropdown-item" href="/contato-info/edit-contato-info-img">Editar Imagem</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{>_msg}}
+        <hr>
+        <dl class="row">            
+
+            <dt class="col-sm-3">ID</dt>
+            <dd class="col-sm-9">{{contatoinfo._id}}</dd>
+
+            <dt class="col-sm-3">Titulo</dt>
+            <dd class="col-sm-9">{{contatoinfo.titulo}}</dd>
+
+            <dt class="col-sm-3">Subtitulo</dt>
+            <dd class="col-sm-9">{{contatoinfo.subtitulo}}</dd>
+
+            <dt class="col-sm-3">Titulo do Formulário</dt>
+            <dd class="col-sm-9">{{contatoinfo.tituloform}}</dd>
+
+            <dt class="col-sm-3">Titulo Horário de Atendimento</dt>
+            <dd class="col-sm-9">{{contatoinfo.titulohratend}}</dd>
+
+            <dt class="col-sm-3">Horário de Atendimento</dt>
+            <dd class="col-sm-9">{{contatoinfo.hratend}}</dd>
+
+            <dt class="col-sm-3">Titulo do Endereço</dt>
+            <dd class="col-sm-9">{{contatoinfo.tituloend}}</dd>
+
+            <dt class="col-sm-3">Logradouro</dt>
+            <dd class="col-sm-9">{{contatoinfo.logradouro}}</dd>
+
+            <dt class="col-sm-3">Bairro</dt>
+            <dd class="col-sm-9">{{contatoinfo.bairro}}</dd>
+
+            <dt class="col-sm-3">Complemento</dt>
+            <dd class="col-sm-9">{{contatoinfo.complemento}}</dd>
+
+            <dt class="col-sm-3">Telefone</dt>
+            <dd class="col-sm-9">{{contatoinfo.telefone}}</dd>  
+
+            <dt class="col-sm-3">Imagem Topo</dt>
+            <dd class="col-sm-9"><img class="img-fluid" src="/images/topo_contato/topo-contato.jpg"></dd>
+
+        </dl>
+    </div>
+</div>

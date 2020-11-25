@@ -102,6 +102,18 @@ nav ul li.menu a:hover {
     color: #FFF;
 }
 
+.descr-top-contato {
+    background-image: url("../images/topo_contato/topo-contato.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    border-radius: 0rem;
+    margin-bottom: 0rem;
+    padding-top: 100px;
+    padding-bottom: 100px;
+    color: #FFF;
+}
+
 .sobre-titulo {
     color: #e61239;
 }
