@@ -90,5 +90,14 @@ router.get("/list-contato", eAdmin, (req, res) => {
     })
 })
 
+router.get("/vis-contato/:id", (req, res) => {
+    Contato.findOne({ _id: req.params.id }).then((contato) => {
+        res.render("contato/vis-contato", { layout: "adm.handlebars", contato: contato })
+    }).catch((erro) => {
+        req.flash("error_msg", "Error: Nenhuma mensagem de contato encontrada!")
+        res.redirect("/contato/list-contato")
+    })
+})
+
 
 module.exports = router
